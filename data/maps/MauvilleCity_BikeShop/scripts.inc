@@ -221,12 +221,13 @@ MauvilleCity_BikeShop_Text_ChoseAcroBike:
 	.string "{PLAYER} chose the ACRO BIKE.$"
 
 MauvilleCity_BikeShop_Text_ComeBackToSwitchBikes:
-	.string "RYDEL: If you get the urge to switch\n"
-	.string "BIKES, just come see me!$"
+	.string "RYDEL: You know what, take this new BIKE!\p"
+	.string "Use RB to change the BIKE's mode at any time,\n"
+	.string "and be sure to let me know how it works!$"
 
 MauvilleCity_BikeShop_Text_WantToSwitchBikes:
-	.string "RYDEL: Oh? Were you thinking about\n"
-	.string "switching BIKES?$"
+	.string "RYDEL: Is something wrong?\n"
+	.string "Do you want to switch BIKES?$"
 
 MauvilleCity_BikeShop_Text_IllSwitchBikes:
 	.string "RYDEL: Okay, no problem!\n"
