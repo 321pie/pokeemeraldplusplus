@@ -225,6 +225,7 @@ static const struct MenuAction sItemStorage_MenuActions[] =
 static const u16 sNewGamePCItems[][2] =
 {
     { ITEM_POTION, 1 },
+    { ITEM_SHINY_CHARM, 1},
     { ITEM_NONE, 0 }
 };
 
@@ -362,9 +363,9 @@ void NewGameInitPCItems(void)
 
     while (TRUE)
     {
-        if (sNewGamePCItems[i][0] == ITEM_NONE || sNewGamePCItems[i][1] == 0)
+        if (sNewGamePCItems[i][0] == ITEM_NONE || sNewGamePCItems[i][1] == ITEM_NONE || sNewGamePCItems[i][2] == 0)
             break;
-        if (AddPCItem(sNewGamePCItems[i][0], sNewGamePCItems[i][1]) != TRUE)
+        if (AddPCItem(sNewGamePCItems[i][0], sNewGamePCItems[i][1], sNewGamePCItems[i][2]) != TRUE)
             break;
         i++;
     }

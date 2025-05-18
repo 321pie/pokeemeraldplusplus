@@ -1,1 +1,3 @@
-# Pokemon Emerald ++
+# Pokemon Expandeed Emerald
+
+This is a romhack of Pokemon Emerald that builds off of [Pokemon Emerald ++](https://www.pokecommunity.com/threads/pokémon-emerald.527848/).
