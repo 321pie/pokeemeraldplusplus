@@ -363,7 +363,7 @@ void NewGameInitPCItems(void)
 
     while (TRUE)
     {
-        if (sNewGamePCItems[i][0] == ITEM_NONE || sNewGamePCItems[i][1] == ITEM_NONE || sNewGamePCItems[i][2] == 0)
+        if (sNewGamePCItems[i][0] == ITEM_NONE || sNewGamePCItems[i][1] == 0)
             break;
         if (AddPCItem(sNewGamePCItems[i][0], sNewGamePCItems[i][1]) != TRUE)
             break;
