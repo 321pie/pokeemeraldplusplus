@@ -365,7 +365,7 @@ void NewGameInitPCItems(void)
     {
         if (sNewGamePCItems[i][0] == ITEM_NONE || sNewGamePCItems[i][1] == ITEM_NONE || sNewGamePCItems[i][2] == 0)
             break;
-        if (AddPCItem(sNewGamePCItems[i][0], sNewGamePCItems[i][1], sNewGamePCItems[i][2]) != TRUE)
+        if (AddPCItem(sNewGamePCItems[i][0], sNewGamePCItems[i][1]) != TRUE)
             break;
         i++;
     }

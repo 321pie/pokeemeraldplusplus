@@ -458,6 +458,11 @@ make
 ```
 If it has built successfully you will have the output file **pokeemerald.gba** in your project folder.
 <details>
+        <summary><i>Note</i></summary>
+
+    >   Substitute "pokeemerald" for name of folder if needed, ex. "pokemeraldplusplus"
+</details>
+<details>
 <summary>Note for Windows...</summary>
 > If you switched terminals since the last build (e.g. from msys2 to WSL1), you must run `make clean-tools` once before any subsequent `make` commands.
 </details>
