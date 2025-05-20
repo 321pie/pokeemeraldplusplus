@@ -10,6 +10,7 @@
 #include "palette.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "random.h"
 #include "scanline_effect.h"
 #include "sound.h"
 #include "sprite.h"
@@ -116,6 +117,8 @@ static const u16 sStarterMon[STARTER_MON_COUNT] =
     SPECIES_TORCHIC,
     SPECIES_MUDKIP,
 };
+
+static struct Pokemon sStarters[STARTER_MON_COUNT];
 
 static const struct BgTemplate sBgTemplates[3] =
 {
@@ -376,6 +379,8 @@ void CB2_ChooseStarter(void)
     u8 taskId;
     u8 spriteId;
 
+    int starterIndex = 0;
+
     SetVBlankCallback(NULL);
 
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
@@ -460,6 +465,19 @@ void CB2_ChooseStarter(void)
     gSprites[spriteId].sBallId = 2;
 
     sStarterLabelWindowId = WINDOW_NONE;
+
+    for(; starterIndex < STARTER_MON_COUNT; starterIndex++)
+    {
+        u32 shinyRerolls = 0;
+        
+        for(; shinyRerolls < 100; shinyRerolls++)
+        {
+            CreateMon(&sStarters[starterIndex], sStarterMon[starterIndex], 5, MAX_IV_MASK, 0, 0, OT_ID_PLAYER_ID, OT_ID_PLAYER_ID);
+
+            if (IsShinyOtIdPersonality(sStarters[starterIndex].box.otId, sStarters[starterIndex].box.personality))
+                break;
+        }
+    }
 }
 
 static void CB2_StarterChoose(void)
@@ -543,6 +561,7 @@ static void Task_HandleConfirmStarterInput(u8 taskId)
     {
     case 0:  // YES
         // Return the starter choice and exit.
+        GiveMonToPlayer(&sStarters[gTasks[taskId].tStarterSelection]);
         gSpecialVar_Result = gTasks[taskId].tStarterSelection;
         ResetAllPicSprites();
         SetMainCallback2(gMain.savedCallback);
@@ -629,8 +648,14 @@ static void Task_CreateStarterLabel(u8 taskId)
 static u8 CreatePokemonFrontSprite(u16 species, u8 x, u8 y)
 {
     u8 spriteId;
+    u8 starterIndex = 0;
+    for(; starterIndex < STARTER_MON_COUNT; starterIndex++)
+    {
+        if(sStarters[starterIndex].box.species == species)
+            break;
+    }
 
-    spriteId = CreateMonPicSprite_Affine(species, SPECIAL_SHINY_ODDS, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
+    spriteId = CreateMonPicSprite_Affine(sStarters[starterIndex].box.species, sStarters[starterIndex].box.otId, sStarters[starterIndex].box.personality, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
     gSprites[spriteId].oam.priority = 0;
     return spriteId;
 }
